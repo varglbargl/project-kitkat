@@ -15,4 +15,4 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 const allTasks = collection(db, 'toDoTasks');
 
-export default { allTasks };
+export { allTasks };
