@@ -7,9 +7,10 @@ module.exports = function(api) {
         'module-resolver',
         {
           alias: {
-            assets: './assets',
-            src: './src',
-            components: './src/components'
+            'initFirebase': './src/initFirebase.js',
+            'assets': './assets',
+            'src': './src',
+            'components': './src/components'
           },
         },
       ],
