@@ -1,19 +1,27 @@
+import { useState } from 'react';
+import { View, Button, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, Button, StyleSheet } from 'react-native';
+
 import Summary from './src/components/Summary';
 
-const createTask = () => {
-
-}
-
 export default function App() {
+  const [currentScreen, setCurrentScreen] = useState("Summary");
+
+  const scheduleTaskClick = () => {
+    setCurrentScreen("ScheduleTask");
+  };
+
   return (
     <View style={styles.appContainer}>
-      <Summary />
+      <View style={styles.topHalf}>
+        { currentScreen === "Summary" && <Summary /> }
+        {/* { currentScreen === "ScheduleTask" && <Summary /> } */}
+      </View>
       <Button
-        onPress={createTask}
-        title="New Task"
-        accessibilityLabel="Add a new task to your todo list"
+        style={styles.addTask}
+        onPress={scheduleTaskClick}
+        title="Schedule Task"
+        accessibilityLabel="Add a task to your todo list"
       />
       <StatusBar style="auto" />
     </View>
@@ -29,5 +37,11 @@ const styles = StyleSheet.create({
     color: '#FFF',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+
+  topHalf: {
+    flex: 1,
+    width: '100%',
+    marginBottom: '12px',
   },
 });

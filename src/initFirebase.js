@@ -13,6 +13,7 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const db = getFirestore();
-const allTasks = collection(db, 'toDoTasks');
+const tasks = collection(db, 'toDoTasks');
+const schedule = collection(db, 'schedule');
 
-export { allTasks };
+export { tasks, schedule };
