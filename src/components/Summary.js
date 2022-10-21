@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: '#324',
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
     alignItems: 'top',
     justifyContent: 'top',
   },
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     margin: '6px',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: '#546',
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
   },
 
   plainText: {

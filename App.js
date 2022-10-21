@@ -1,22 +1,44 @@
 import { useState } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, Modal, StyleSheet, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-import Summary from './src/components/Summary';
+import Summary from 'components/Summary';
+import ScheduleTask from 'components/ScheduleTask';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState("Summary");
+  const [currentModal, setCurrentModal] = useState(null);
 
   const scheduleTaskClick = () => {
-    setCurrentScreen("ScheduleTask");
+    setCurrentModal("Schedule Task");
+  };
+
+  const hideModal = () => {
+    setCurrentModal(null);
   };
 
   return (
     <View style={styles.appContainer}>
       <View style={styles.topHalf}>
         { currentScreen === "Summary" && <Summary /> }
-        {/* { currentScreen === "ScheduleTask" && <Summary /> } */}
       </View>
+
+      { /* Modal menu: */ }
+      <Modal
+        animationType="slide"
+        transparent={true}
+        style={styles.modalMenu}
+        visible={currentModal}
+      >
+        <Pressable
+          onPress={hideModal}
+          style={styles.closeButton}
+          accessibilityLabel="Close pop-up menu"
+        >
+          <Text style={styles.closeX}>X</Text>
+        </Pressable>
+        <ScheduleTask />
+      </Modal>
       <Button
         style={styles.addTask}
         onPress={scheduleTaskClick}
@@ -33,10 +55,25 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: '20px',
     flexDirection: 'column',
-    backgroundColor: '#102',
+    backgroundColor: '#180028',
     color: '#FFF',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+
+  modalMenu: {
+    backgroundColor: 'transparent',
+  },
+
+  closeButton: {
+    padding: '3px 6px',
+    backgroundColor: 'transparent',
+    textAlign: 'right',
+  },
+
+  closeX: {
+    color: '#FFF',
+    fontWeight: 800,
   },
 
   topHalf: {
