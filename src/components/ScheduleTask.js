@@ -131,9 +131,4 @@ const styles = StyleSheet.create({
   selected: {
     backgroundColor: 'red',
   },
-
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  }
 });

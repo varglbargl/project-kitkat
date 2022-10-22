@@ -1,4 +1,4 @@
-import { View, Modal, Pressable, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import { cards } from 'styles';
 
@@ -13,13 +13,5 @@ export default function ModalMenu( { children, title,  } ) {
 };
 
 const styles = StyleSheet.create({
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-  },
-
-  title: {
-    ...cards.title,
-  }
+  ...cards,
 });

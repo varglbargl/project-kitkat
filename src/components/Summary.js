@@ -3,7 +3,7 @@ import { schedule } from 'initFirebase';
 import { useState } from 'react';
 import { getDoc, getDocs, query, where, orderBy } from 'firebase/firestore';
 
-import CardHeader from 'components/CardHeader';
+import TaskCard from 'components/TaskCard';
 
 import { cards } from 'styles';
 
@@ -61,21 +61,12 @@ export default function Summary() {
       { gotDefaultTasks &&
         currentTasks.map((task, i) => {
           return (
-            <Pressable
+            <TaskCard
               key={ i }
-              onPress={ () => {expandTask(i)} }
-              style={ styles.taskCard }
-            >
-              <CardHeader
-                title={ 'P' + task.priority + ' - ' + task.title }
-              >
-              </CardHeader>
-              {expandedTask === i && (
-                <Text style={ styles.description }>
-                  { task.description }
-                </Text>
-              )}
-            </Pressable>
+              task={ task }
+              expanded={ expandedTask === i }
+              onPress={ ()=>expandTask(i) }
+            />
           );
         })
       }

@@ -1,3 +1,4 @@
+import colors from './colors.js';
 import cards from './cards.js';
 
-export { cards };
+export { colors, cards };
