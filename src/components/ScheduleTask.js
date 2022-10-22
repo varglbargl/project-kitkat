@@ -3,6 +3,8 @@ import { tasks } from 'initFirebase';
 import { useState } from 'react';
 import { getDocs, query, orderBy } from 'firebase/firestore';
 
+import CardHeader from 'components/CardHeader';
+
 let loadedTasks = null;
 
 export default function Summary() {
@@ -51,37 +53,36 @@ export default function Summary() {
   }
 
   return (
-    <View style={styles.scheduleTaskContainer}>
-      {!loadedTasks && <Text style={styles.plainText}>Loading...</Text>}
-      <View style={styles.taskList}>
+    <View style={ styles.scheduleTaskContainer }>
+      {!loadedTasks &&
+        <Text style={ styles.plainText }>Loading...</Text>
+      }
 
-        <View style={styles.header}>
-          <Text style={styles.title}>Select a Task:</Text>
+      <View style={ styles.taskList }>
+        <CardHeader title="Task">
           <Button
             title="New Task"
-            onPress={newTask}
+            onPress={ newTask }
             accessibilityLabel="Create a new Task"
           />
-        </View>
-        {loadedTasks &&
+        </CardHeader>
+        { loadedTasks &&
           currentTasks.map((task, i) => {
             return (
               <Pressable
-                key={i}
-                onPress={() => {selectTask(i)}}
-                style={[styles.taskCard, selectedTask === i ? styles.selected : null]}
+                key={ i }
+                onPress={ () => {selectTask(i)} }
+                style={ [styles.taskCard, selectedTask === i ? styles.selected : null] }
               >
-                <Text style={styles.title}>
-                  {task.title}
-                </Text>
+                <CardHeader title={ task.title }></CardHeader>
               </Pressable>
             );
           })
         }
       </View>
 
-      {loadedTasks && currentTasks.length === 0 &&
-        <Text style={styles.plainText}>All caught up!</Text>
+      { loadedTasks && currentTasks.length === 0 &&
+        <Text style={ styles.plainText }>All caught up!</Text>
       }
     </View>
   );
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: '#324',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
 
   taskList: {
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     margin: '6px',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: '#546',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
 
   plainText: {

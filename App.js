@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { View, Text, Button, Modal, StyleSheet, Pressable } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import Summary from 'components/Summary';
 import ScheduleTask from 'components/ScheduleTask';
+import ModalCard from 'components/ModalCard';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState("Summary");
@@ -24,26 +25,18 @@ export default function App() {
       </View>
 
       { /* Modal menu: */ }
-      <Modal
-        animationType="slide"
-        transparent={true}
-        style={styles.modalMenu}
-        visible={currentModal}
+      <ModalCard
+        visible={ currentModal }
+        onClose={ hideModal }
+        title="Schedule a task"
       >
-        <Pressable
-          onPress={hideModal}
-          style={styles.closeButton}
-          accessibilityLabel="Close pop-up menu"
-        >
-          <Text style={styles.closeX}>X</Text>
-        </Pressable>
         <ScheduleTask />
-      </Modal>
+      </ModalCard>
       <Button
-        style={styles.addTask}
-        onPress={scheduleTaskClick}
+        style={ styles.addTask }
+        onPress={ scheduleTaskClick }
         title="Schedule Task"
-        accessibilityLabel="Add a task to your todo list"
+        accessibilityLabel="Add a task to your schedule"
       />
       <StatusBar style="auto" />
     </View>
@@ -59,21 +52,6 @@ const styles = StyleSheet.create({
     color: '#FFF',
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-
-  modalMenu: {
-    backgroundColor: 'transparent',
-  },
-
-  closeButton: {
-    padding: '3px 6px',
-    backgroundColor: 'transparent',
-    textAlign: 'right',
-  },
-
-  closeX: {
-    color: '#FFF',
-    fontWeight: 800,
   },
 
   topHalf: {

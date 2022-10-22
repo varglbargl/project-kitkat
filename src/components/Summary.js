@@ -3,6 +3,10 @@ import { schedule } from 'initFirebase';
 import { useState } from 'react';
 import { getDoc, getDocs, query, where, orderBy } from 'firebase/firestore';
 
+import CardHeader from 'components/CardHeader';
+
+import { cards } from 'styles';
+
 let gotDefaultTasks = false;
 
 export default function Summary() {
@@ -52,28 +56,31 @@ export default function Summary() {
   }
 
   return (
-    <View style={styles.summaryContainer}>
-      {!gotDefaultTasks && <Text style={styles.plainText}>Loading...</Text>}
-      {gotDefaultTasks &&
+    <View style={ styles.summaryContainer }>
+      { !gotDefaultTasks && <Text style={ styles.plainText }>Loading...</Text>}
+      { gotDefaultTasks &&
         currentTasks.map((task, i) => {
           return (
             <Pressable
-              key={i}
-              onPress={() => {expandTask(i)}}
-              style={styles.taskCard}
+              key={ i }
+              onPress={ () => {expandTask(i)} }
+              style={ styles.taskCard }
             >
-              <Text style={styles.title}>
-                P{task.priority} - {task.title}
-              </Text>
+              <CardHeader
+                title={ 'P' + task.priority + ' - ' + task.title }
+              >
+              </CardHeader>
               {expandedTask === i && (
-                <Text style={styles.description}>{task.description}</Text>
+                <Text style={ styles.description }>
+                  { task.description }
+                </Text>
               )}
             </Pressable>
           );
         })
       }
-      {gotDefaultTasks && currentTasks.length === 0 &&
-        <Text style={styles.plainText}>All caught up!</Text>
+      { gotDefaultTasks && currentTasks.length === 0 &&
+        <Text style={ styles.plainText }>All caught up!</Text>
       }
     </View>
   );
@@ -85,7 +92,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     alignItems: 'top',
     justifyContent: 'top',
   },
@@ -94,7 +101,7 @@ const styles = StyleSheet.create({
     margin: '6px',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
 
   plainText: {
@@ -103,10 +110,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: '1.12em',
-    fontWeight: 600,
-    color: '#FFE',
-    marginBottom: '2px',
+    ...cards.title
   },
 
   description: {

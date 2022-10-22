@@ -10,7 +10,8 @@ module.exports = function(api) {
             'initFirebase': './src/initFirebase.js',
             'assets': './assets',
             'src': './src',
-            'components': './src/components'
+            'components': './src/components',
+            'styles': './src/styles',
           },
         },
       ],
