@@ -5,7 +5,7 @@ import { getDoc, getDocs, query, where, orderBy } from 'firebase/firestore';
 
 import TaskCard from 'components/TaskCard';
 
-import { cards } from 'styles';
+import { colors, cards } from 'styles';
 
 let gotDefaultTasks = false;
 
@@ -79,20 +79,20 @@ export default function Summary() {
 
 const styles = StyleSheet.create({
   summaryContainer: {
+    ...colors.lightBkg,
     flex: 1,
     width: '100%',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     alignItems: 'top',
     justifyContent: 'top',
   },
 
   taskCard: {
+    ...colors.lightBkg,
     margin: '6px',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
 
   plainText: {

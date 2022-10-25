@@ -1,12 +1,14 @@
+import { colors } from 'styles';
+
 const textColor = '#FFE';
 const rowSpacing = '10px';
 
 const cards = {
   taskCard: {
+    ...colors.lightBkg,
     margin: '6px',
     padding: '6px',
     borderRadius: '3px',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
 
   cardHeader: {
@@ -35,10 +37,13 @@ const cards = {
     color: textColor,
   },
 
-  detailColumn: {
-    flexDirection: 'column',
+  detailContainer: {
+    marginTop: '6px',
     padding: '6px',
     paddingBottom: 0,
+    flexDirection: 'column',
+    borderTopWidth: '2px',
+    ...colors.lightBorder,
   },
 
   detailRow: {
@@ -65,10 +70,6 @@ const cards = {
     flexGrow: 1,
     textAlign: 'center',
   },
-
-  tagSpacer: {
-    flexGrow: 4,
-  }
 };
 
 export default cards;

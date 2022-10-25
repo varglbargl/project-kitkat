@@ -2,6 +2,11 @@ import { View, Pressable, Text, StyleSheet } from 'react-native';
 
 import CardHeader from 'components/CardHeader';
 import { colors, cards } from 'styles';
+import { Button } from 'react-native-web';
+
+const editScheduledTask = () => {
+  // edit the task somehow
+}
 
 export default function Summary( { task, expanded, onPress } ) {
 
@@ -15,10 +20,10 @@ export default function Summary( { task, expanded, onPress } ) {
       >
       </CardHeader>
       { expanded &&
-        <View style={ styles.detailColumn }>
+        <View style={ styles.detailContainer }>
           <View style={ styles.detailRow }>
-            <Text style={ [styles.tag, styles.colorByNumber(task.priority), {flexGrow: 0.25}] }>
-              Priority: { task.priority }
+            <Text style={ [styles.tag, styles.colorByNumber(task.priority - 1), {flexGrow: 0.25}] }>
+              Priority { task.priority }
             </Text>
             <Text style={ styles.plainText }>
               {/* todo: replace 15 with user.settings.bufferTime */}
@@ -27,7 +32,9 @@ export default function Summary( { task, expanded, onPress } ) {
             { task.repeatEvery &&
               <Text style={ styles.plainText }>
 
-                { task.repeatEvery.duration > 1 &&
+                { task.repeatEvery.fromCompletion &&
+                  '~'
+                }{ task.repeatEvery.duration > 1 &&
                   `Every ${ task.repeatEvery.duration } ${ task.repeatEvery.period }s`
                   || `Every ${ task.repeatEvery.period }`
                 }
@@ -52,7 +59,7 @@ export default function Summary( { task, expanded, onPress } ) {
                   </Text>
                 );
               })}
-              <View style={ styles.tagSpacer }></View>
+              <View style={ {flexGrow: 5} }></View>
             </View>
           }
         </View>

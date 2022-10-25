@@ -1,9 +1,18 @@
-const textColor = '#FFE';
+const lightText = '#FFE';
+const lightAccent = 'rgba(255, 255, 255, 0.1)'
 const rainbow = ['red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'magenta'];
 
 const colors = {
+  lightBkg: {
+    backgroundColor: lightAccent,
+  },
+
+  lightBorder: {
+    borderColor: lightAccent,
+  },
+
   lightText: {
-    color: textColor,
+    color: lightText,
   },
 
   red: {
@@ -23,7 +32,7 @@ const colors = {
   },
 
   teal: {
-    backgroundColor: 'steelblue',
+    backgroundColor: 'teal',
   },
 
   blue: {
@@ -49,6 +58,11 @@ const colors = {
   },
 
   colorByNumber: (i) => {
+    if (typeof i !== 'number' || i % 1 !== 0) {
+      console.error(new Error('colorByNumber expected an integer, got ' + i + '.'));
+      return;
+    }
+
     const hue = rainbow[i % rainbow.length];
 
     return colors[hue];
