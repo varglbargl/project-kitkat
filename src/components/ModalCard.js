@@ -3,11 +3,6 @@ import { View, Modal, Pressable, Text, StyleSheet } from 'react-native';
 import CardHeader from 'components/CardHeader';
 
 export default function ModalCard( { children, visible, title, onClose } ) {
-  const closeModal = () => {
-    if (!onClose) return;
-
-    onClose(this);
-  }
 
   return (
     <View style={ styles.modalContainer }>
@@ -20,7 +15,7 @@ export default function ModalCard( { children, visible, title, onClose } ) {
           <CardHeader title={ title }>
             { onClose &&
               <Pressable
-                onPress={ closeModal }
+                onPress={ onClose }
                 style={ styles.closeButton }
                 accessibilityLabel="Close this pop-up menu"
               >
