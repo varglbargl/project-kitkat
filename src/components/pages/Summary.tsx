@@ -1,5 +1,6 @@
 import { schedule } from 'initFirebase';
 import { useState } from 'react';
+import { IonAccordionGroup, IonCard, IonCardTitle } from '@ionic/react';
 import { getDoc, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { Query, QuerySnapshot, QueryDocumentSnapshot, DocumentSnapshot, DocumentData } from 'firebase/firestore';
 
@@ -51,21 +52,25 @@ export default function Summary() {
   if (!gotDefaultTasks) refreshSchedule();
 
   return (
-    <div>
+    <IonCard>
+      <IonCardTitle className="ion-padding">Summary</IonCardTitle>
       { !gotDefaultTasks && <span>Loading...</span>}
       { gotDefaultTasks &&
-        currentTasks.map((task: Task, i: number) => {
+        <IonAccordionGroup>
+        { currentTasks.map((task: Task, i: number) => {
           return (
             <TaskCard
               key={ i }
+              listId={ 'Task-' + i }
               task={ task }
             />
           );
-        })
+        }) }
+        </IonAccordionGroup>
       }
       { gotDefaultTasks && currentTasks.length === 0 &&
         <span>All caught up!</span>
       }
-    </div>
+    </IonCard>
   );
 };

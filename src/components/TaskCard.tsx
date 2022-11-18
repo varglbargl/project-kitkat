@@ -1,66 +1,78 @@
-import { ReactChildren } from "types";
-import { Task } from "classes";
+import { ReactChildren } from 'types';
+import { Task } from 'classes';
+
+import { IonAccordion, IonChip, IonCol, IonIcon, IonItem, IonLabel, IonRow, IonGrid } from '@ionic/react';
+import { warning, stopwatch, refreshCircle, pricetags } from 'ionicons/icons';
+
+import './TaskCard.css';
 
 type Props = {
   children?: ReactChildren;
   task: Task;
+  listId: string;
 }
 
-export default function TaskCard( { children, task }: Props ) {
+export default function TaskCard( { children, task, listId }: Props ) {
   return (
-    <div>
-      <div>
-        <div>
-          <span>
-            P{ task.priority }
-          </span>
+    <IonAccordion value={ listId }>
+      <IonItem slot="header" color="primary">
+        <IonLabel>{ task.title }</IonLabel>
+      </IonItem>
+      <IonGrid slot="content" className="ion-padding-vertical">
+        <IonRow className="ion-justify-content-between ion-padding-horizontal">
+          <IonCol size="auto">
+            <IonIcon icon={ warning } />
+            <IonLabel>
+              P{ task.priority }
+            </IonLabel>
+          </IonCol>
 
-          <div>
-            <span>
+          <IonCol size="auto">
+            <IonIcon icon={ stopwatch } />
+            <IonLabel>
               {/* todo: replace 15 with user.settings.bufferTime */}
               { task.duration } - { task.duration + 15 } mins
-            </span>
-          </div>
+            </IonLabel>
+          </IonCol>
 
           { task.repeatEvery &&
-            <div>
-              {/* <MaterialCommunityIcons style={ styles.inlineIcon } name="repeat" /> */}
-              <span>
-
+            <IonCol size="auto">
+              <IonIcon icon={ refreshCircle } />
+              <IonLabel>
                 { (task.repeatEvery.fromCompletion && 'After ') || 'Every ' }
                 { task.repeatEvery.duration } { task.repeatEvery.period }
                 { task.repeatEvery.duration > 1 && 's' }
-              </span>
-            </div>
+              </IonLabel>
+            </IonCol>
           }
-        </div>
+        </IonRow>
 
         { children &&
-          <div>
+          <IonRow>
             { children }
-          </div>
+          </IonRow>
         }
 
-        <span>
-          "{ task.description }"
-        </span>
+        <IonRow className="ion-padding">
+          <IonLabel>"{ task.description }"</IonLabel>
+
+        </IonRow>
 
         { task.tags && task.tags.length > 0 &&
-          <div>
-            {/* <MaterialCommunityIcons style={ styles.inlineIcon } name="tag-outline" /> */}
+          <IonRow className="ion-align-items-center ion-padding-horizontal">
+            <IonIcon icon={ pricetags }/>
             { task.tags.map((tag:string, i:number) => {
               return (
-                <span
+                <IonChip
                   key={ i }
                 >
-                  { tag }
-                </span>
+                  <IonLabel>{ tag }</IonLabel>
+                </IonChip>
               );
             })}
-            <div style={ {flexGrow: 5} }></div>
-          </div>
+          </IonRow>
         }
-      </div>
-    </div>
+      </IonGrid>
+    </IonAccordion>
   );
 };
