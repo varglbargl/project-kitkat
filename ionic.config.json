@@ -1,0 +1,8 @@
+{
+  "name": "project-kitkat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "ea9da0c2"
+}
