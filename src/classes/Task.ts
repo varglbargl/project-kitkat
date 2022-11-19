@@ -6,23 +6,14 @@ type RepeatEvery = {
   fromCompletion: boolean;
 };
 
-class Task {
+type Task = {
   title: string;
-  readonly createdAt: Timestamp = Timestamp.fromDate(new Date());
+  createdAt: Timestamp;
   description: string;
   duration: number;
   priority: number;
-  repeatEvery?: RepeatEvery;
+  repeatEvery: RepeatEvery;
   tags: string[];
-
-  constructor({ title = 'Untitled Task', description = '', duration = 10, priority = 3, tags = [], repeatEvery}:Task) {
-    this.title = title;
-    this.description = description;
-    this.duration = duration;
-    this.priority = priority;
-    this.repeatEvery = repeatEvery;
-    this.tags = tags;
-  }
-};
+}
 
 export default Task;

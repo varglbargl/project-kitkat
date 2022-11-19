@@ -1,6 +1,6 @@
 import { schedule } from 'initFirebase';
 import { useState } from 'react';
-import { IonAccordionGroup, IonCard, IonCardTitle } from '@ionic/react';
+import { IonAccordionGroup, IonCard } from '@ionic/react';
 import { getDoc, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { Query, QuerySnapshot, QueryDocumentSnapshot, DocumentSnapshot, DocumentData } from 'firebase/firestore';
 
@@ -26,7 +26,7 @@ export default function Summary() {
 
     const resolvedList: DocumentSnapshot[] = await Promise.all(promiseList);
     const taskList: Task[] = resolvedList.map((task: DocumentSnapshot) => {
-      return task.data() as unknown as Task;
+      return task.data() as Task;
     });
 
     gotDefaultTasks = true;
@@ -53,7 +53,6 @@ export default function Summary() {
 
   return (
     <IonCard>
-      <IonCardTitle className="ion-padding">Summary</IonCardTitle>
       { !gotDefaultTasks && <span>Loading...</span>}
       { gotDefaultTasks &&
         <IonAccordionGroup>

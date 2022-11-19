@@ -1,3 +1,3 @@
 import Task from "./Task";
 
-export { Task };
+export type { Task };

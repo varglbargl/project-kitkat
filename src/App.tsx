@@ -35,6 +35,11 @@ import Summary from './components/pages/Summary';
 
 setupIonicReact();
 
+const prefersDark: MediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+const darkMode: boolean = prefersDark.matches;
+
+document.body.classList.toggle('dark', darkMode);
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>

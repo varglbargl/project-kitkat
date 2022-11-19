@@ -1,14 +1,24 @@
-ion-icon {
+.task-card [slot="content"] ion-icon {
   font-size: 22px;
   padding: 0 3px;
+  color: var(--ion-text-color);
 }
 
-ion-col {
+.task-card ion-col {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-ion-label {
-  color: #FFF;
+.task-card [slot="content"] {
+  background-color: rgba(var(--ion-color-primary-rgb), 0.15);
+}
+
+.task-card [slot="content"] ion-label {
+  color: var(--ion-text-color);
+}
+
+.task-card ion-chip {
+  background-color: rgba(var(--ion-color-tertiary-rgb), 0.15);
+  color: var(--ion-color-tertiary-shade);
 }
