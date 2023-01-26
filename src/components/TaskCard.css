@@ -1,13 +1,22 @@
+.task-card [slot="header"] ion-label {
+  white-space: unset;
+}
+
 .task-card [slot="content"] ion-icon {
   font-size: 22px;
   padding: 0 3px;
   color: var(--ion-text-color);
 }
 
+.task-card .no-wrap {
+  flex-wrap: nowrap;
+}
+
 .task-card ion-col {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: auto;
 }
 
 .task-card [slot="content"] {

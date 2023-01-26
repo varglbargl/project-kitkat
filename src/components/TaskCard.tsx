@@ -10,7 +10,7 @@ interface Props {
   children?: ReactChildren;
   task: Task;
   listId: string;
-}
+};
 
 export default function TaskCard( { children, task, listId }: Props ) {
   return (
@@ -19,7 +19,7 @@ export default function TaskCard( { children, task, listId }: Props ) {
         <IonLabel>{ task.title }</IonLabel>
       </IonItem>
       <IonGrid slot="content" className="ion-padding-vertical">
-        <IonRow className="ion-justify-content-between ion-padding-horizontal">
+        <IonRow className="no-wrap ion-justify-content-evenly ion-padding-horizontal">
           <IonCol size="auto">
             <IonIcon icon={ warningOutline } />
             <IonLabel>
@@ -60,7 +60,7 @@ export default function TaskCard( { children, task, listId }: Props ) {
 
         { task.tags && task.tags.length > 0 &&
           <IonRow className="ion-align-items-center ion-padding-horizontal">
-            <IonCol>
+            <IonCol size="auto">
               <IonIcon icon={ pricetagsOutline }/>
             </IonCol>
             { task.tags.map((tag:string, i:number) => {
